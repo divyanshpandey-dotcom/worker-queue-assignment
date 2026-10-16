@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: dispatch
+      POSTGRES_PASSWORD: dispatch
+      POSTGRES_DB: dispatch
+    ports:
+      - "${POSTGRES_HOST_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dispatch -d dispatch"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  provider:
+    build: ./provider
+    ports:
+      - "${PROVIDER_HOST_PORT:-8080}:8080"
+    environment:
+      PROVIDER_SEED: ${PROVIDER_SEED:-1}
+      PROVIDER_FAULTS: ${PROVIDER_FAULTS:-on}
+      FAULT_RATE_429: ${FAULT_RATE_429:-0.02}
+      FAULT_RATE_500: ${FAULT_RATE_500:-0.04}
+      FAULT_RATE_HANG: ${FAULT_RATE_HANG:-0.03}
+      FAULT_RATE_DROP: ${FAULT_RATE_DROP:-0.03}
+      FAULT_RATE_DROP_BEFORE: ${FAULT_RATE_DROP_BEFORE:-0}
+      FAULTS_ON_SENT: ${FAULTS_ON_SENT:-on}
+      RATE_LIMIT_RPS: ${RATE_LIMIT_RPS:-12}
+      RATE_LIMIT_BURST: ${RATE_LIMIT_BURST:-12}
+      RETRY_AFTER_MIN: ${RETRY_AFTER_MIN:-1}
+      RETRY_AFTER_MAX: ${RETRY_AFTER_MAX:-2}
+      HANG_MAX_SECONDS: ${HANG_MAX_SECONDS:-300}
+      SENT_PAGE_SIZE: ${SENT_PAGE_SIZE:-100}
+      PROVIDER_LOG: ${PROVIDER_LOG:-off}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/healthz', timeout=2)"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
