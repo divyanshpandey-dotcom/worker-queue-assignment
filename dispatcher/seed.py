@@ -1,8 +1,6 @@
 """`make seed`: create the schema if missing and load seed/actions.json.
 Idempotent; running it twice inserts nothing new."""
 
-from __future__ import annotations
-
 import json
 import sys
 from pathlib import Path

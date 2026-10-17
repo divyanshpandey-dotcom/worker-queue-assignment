@@ -5,8 +5,6 @@ honours the shared pause and per-worker pacing. A heartbeat thread keeps the
 lease alive; if it ever fails to, the main loop drops the row.
 """
 
-from __future__ import annotations
-
 import signal
 import sys
 import threading

@@ -5,8 +5,6 @@ single UPDATE whose WHERE clause is the guard, and the caller checks the row
 count to learn whether the transition fired. Nothing here talks HTTP.
 """
 
-from __future__ import annotations
-
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Iterable

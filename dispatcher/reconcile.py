@@ -10,8 +10,6 @@ transaction is ever open while we wait on the provider: Postgres freezes
 now() for a transaction's lifetime, and a dead scanner must not pin a lock.
 """
 
-from __future__ import annotations
-
 import time
 from typing import Callable
 

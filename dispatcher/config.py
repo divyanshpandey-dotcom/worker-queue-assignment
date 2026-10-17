@@ -1,8 +1,6 @@
 """Runtime configuration. Everything comes from the environment with the defaults
 the README allows (127.0.0.1 services) and the numbers justified in DECISIONS.md."""
 
-from __future__ import annotations
-
 import os
 import socket
 from dataclasses import dataclass

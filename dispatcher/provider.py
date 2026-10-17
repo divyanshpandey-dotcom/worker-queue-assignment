@@ -13,8 +13,6 @@ observations the state machine understands:
 Library-level retries are off. One request per attempt, owned by the worker.
 """
 
-from __future__ import annotations
-
 import enum
 from dataclasses import dataclass
 
