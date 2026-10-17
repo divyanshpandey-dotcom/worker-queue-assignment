@@ -1,4 +1,4 @@
-"""HTTP client for the provider. Knows nothing about the database.
+"""HTTP client for the mock provider (the server in provider/). Knows nothing about the database.
 
 Its whole job is to turn whatever happens on the wire into one of five
 observations the state machine understands:

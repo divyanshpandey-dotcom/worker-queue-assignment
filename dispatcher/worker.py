@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 
 from . import db, reconcile
 from .config import Config
-from .provider import Kind, ProviderClient
+from .provider_client import Kind, ProviderClient
 
 
 class Worker:

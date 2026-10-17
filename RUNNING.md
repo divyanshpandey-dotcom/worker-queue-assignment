@@ -14,7 +14,7 @@ it, and the exact commands to run and verify it.
 ├── dispatcher/              the submission
 │   ├── config.py            every setting, read from the environment
 │   ├── db.py                schema + one function per SQL statement (the guarded transitions)
-│   ├── provider.py          HTTP client: turns every wire outcome into one of five observations
+│   ├── provider_client.py   HTTP client for the mock provider: turns every wire outcome into one of five observations
 │   ├── reconcile.py         the /sent scan that resolves "did it send or not"
 │   ├── worker.py            the state machine: claim, process, heartbeat, signals
 │   └── seed.py              `make seed`: create schema, load seed/actions.json
@@ -30,7 +30,7 @@ it, and the exact commands to run and verify it.
 |---|---|---|
 | `config.py` | environment variables, defaults, the numbers justified in DECISIONS.md | anything else |
 | `db.py` | Postgres, the three tables, every transition's WHERE clause | HTTP, the provider |
-| `provider.py` | HTTP, timeouts, how to classify a response or a socket error | the database, retries, state |
+| `provider_client.py` | HTTP, timeouts, how to classify a response or a socket error | the database, retries, state |
 | `reconcile.py` | paging `/sent`, the receipts table, the scan lease | sending, leases on actions |
 | `worker.py` | the order things happen in, the heartbeat thread, signals | SQL text, HTTP details |
 | `seed.py` | the seed file format | everything else |

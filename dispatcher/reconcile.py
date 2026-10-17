@@ -16,7 +16,7 @@ from typing import Callable
 import psycopg
 
 from . import db
-from .provider import Kind, Page, ProviderClient
+from .provider_client import Kind, Page, ProviderClient
 
 MAX_PAGE_FAILURES = 30  # 500s / resets on /sent before giving up this scan
 
