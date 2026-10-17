@@ -157,7 +157,6 @@ class Worker:
     def run(self) -> int:
         threading.Thread(target=self.heartbeat_loop, daemon=True, name="heartbeat").start()
         self.log(f"worker up lease={self.cfg.lease_seconds}s timeout={self.cfg.client_timeout}s")
-        idle_since: float | None = None
         try:
             while not self.stop.is_set():
                 action = db.claim_one(self.conn, self.cfg.worker_id, self.cfg.lease_seconds)
