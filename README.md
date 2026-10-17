@@ -133,4 +133,4 @@ provider between runs.
 - `dispatcher/`: `config.py` (env), `db.py` (schema + every guarded transition), `provider.py` (HTTP → five observations), `reconcile.py` (the `/sent` scan), `worker.py` (the state machine), `seed.py`.
 - `make seed` creates the schema and loads the 500 actions (idempotent). `make worker` runs one foreground worker via `uv run`.
 - `scripts/grader_run.sh` reproduces the grading run locally. If host port 5432 is taken, set `POSTGRES_HOST_PORT` (and `DATABASE_URL` accordingly).
-- `DECISIONS.md` is the one-pager; `notes/` holds the longer design record and provider behaviour reference.
+- `DECISIONS.md` is the one-pager; `RUNNING.md` covers structure and how to run and verify; `notes/` holds the longer design record and provider behaviour reference.
